@@ -2,9 +2,9 @@ package com.bearman.pokedex.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.bearman.pokedex.viewmodel.ListPokemonViewModel
-import com.bearman.pokedex.viewmodel.ViewModelFactory
-import com.bearman.pokedex.viewmodel.ViewModelKey
+import com.bearman.pokedex.view.viewmodel.ListPokemonViewModel
+import com.bearman.pokedex.view.viewmodel.ViewModelFactory
+import com.bearman.pokedex.view.viewmodel.ViewModelKey
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

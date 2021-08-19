@@ -1,7 +1,7 @@
 package com.bearman.pokedex.di
 
 
-import com.bearman.pokedex.view.MainActivity
+import com.bearman.pokedex.view.activity.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

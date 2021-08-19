@@ -1,8 +1,8 @@
-package com.bearman.pokedex.model
+package com.bearman.pokedex.data.entity
 
 import com.google.gson.annotations.SerializedName
 
-data class Pokemon(
+data class PokemonEntity(
     @SerializedName("next")
     private val next: String?,
 
@@ -10,5 +10,5 @@ data class Pokemon(
     private val previous: String?,
 
     @SerializedName("results")
-    private val result: List<PokemonLink>?
+    private val result: List<PokemonLinkEntity>?
 )

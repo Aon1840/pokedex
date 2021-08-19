@@ -1,4 +1,4 @@
-package com.bearman.pokedex.viewmodel
+package com.bearman.pokedex.view.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

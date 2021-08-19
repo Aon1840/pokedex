@@ -2,8 +2,8 @@ package com.bearman.pokedex.di
 
 import com.bearman.pokedex.domain.repository.PokemonRepository
 import com.bearman.pokedex.domain.usecase.ListPokemonUseCase
-import com.bearman.pokedex.model.PokeApi
-import com.bearman.pokedex.model.PokemonService
+import com.bearman.pokedex.data.service.PokeApi
+import com.bearman.pokedex.data.service.PokemonService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

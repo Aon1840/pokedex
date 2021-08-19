@@ -1,10 +1,10 @@
-package com.bearman.pokedex.view
+package com.bearman.pokedex.view.activity
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.bearman.pokedex.R
-import com.bearman.pokedex.viewmodel.ListPokemonViewModel
+import com.bearman.pokedex.view.viewmodel.ListPokemonViewModel
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
