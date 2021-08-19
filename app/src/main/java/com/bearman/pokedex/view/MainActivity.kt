@@ -1,20 +1,25 @@
 package com.bearman.pokedex.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.bearman.pokedex.R
 import com.bearman.pokedex.viewmodel.ListPokemonViewModel
+import dagger.android.support.DaggerAppCompatActivity
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
 
-    private lateinit var viewModel: ListPokemonViewModel
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    lateinit var viewModel: ListPokemonViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel = ViewModelProviders.of(this).get(ListPokemonViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(ListPokemonViewModel::class.java)
         viewModel.callService("10")
 
     }
