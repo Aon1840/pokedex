@@ -1,5 +1,6 @@
 package com.bearman.pokedex.data.service
 
+import com.bearman.pokedex.data.entity.PokemonDetailEntity
 import com.bearman.pokedex.data.entity.PokemonEntity
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -9,4 +10,7 @@ interface PokeApi {
 
     @GET("pokemon?limit=10")
     fun getPokemonList(@Query("offset") offset: String): Single<PokemonEntity>
+
+    @GET("pokemon.json")
+    fun getPokemon(): Single<List<PokemonDetailEntity>>
 }

@@ -1,5 +1,6 @@
 package com.bearman.pokedex.domain.repository
 
+import com.bearman.pokedex.data.entity.PokemonDetailEntity
 import com.bearman.pokedex.data.entity.PokemonEntity
 import com.bearman.pokedex.data.service.PokemonService
 import io.reactivex.Single
@@ -11,5 +12,9 @@ class PokemonRepository @Inject constructor(
 
     override fun getPokemonList(offset: String): Single<PokemonEntity> {
         return pokemonService.getListPokemon(offset)
+    }
+
+    override fun getPokemonListDetail(): Single<List<PokemonDetailEntity>> {
+        return pokemonService.getListPokemonDetail()
     }
 }

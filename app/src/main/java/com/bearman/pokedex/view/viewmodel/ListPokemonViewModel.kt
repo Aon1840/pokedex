@@ -2,18 +2,18 @@ package com.bearman.pokedex.view.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.bearman.pokedex.data.entity.PokemonEntity
+import com.bearman.pokedex.data.entity.PokemonDetailEntity
+import com.bearman.pokedex.domain.usecase.ListPokemonDetail
 import com.bearman.pokedex.domain.usecase.ListPokemonUseCase
-import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
 import javax.inject.Inject
 
 class ListPokemonViewModel
 @Inject constructor(
-    private var listPokemonUseCase: ListPokemonUseCase
+    private var listPokemonDetailUseCase: ListPokemonDetail
 ) : ViewModel() {
 
-    var pokemonList = MutableLiveData<PokemonEntity>()
+    var pokemonList = MutableLiveData<List<PokemonDetailEntity>>()
     var isLoading = MutableLiveData<Boolean>()
     var isError = MutableLiveData<Boolean>()
 
@@ -23,15 +23,15 @@ class ListPokemonViewModel
 
     private fun fetchPokemon(offset: String) {
         isLoading.value = true
-        listPokemonUseCase.execute({
-            pokemonList.value = it
+        listPokemonDetailUseCase.execute({
             Timber.d("success: $it")
+            isLoading.value = false
+            pokemonList.value = it
         }, {
+            isLoading.value = false
             isError.value = true
             Timber.d("error: $it")
-        },
-            params = offset
-        )
+        })
 
     }
 }

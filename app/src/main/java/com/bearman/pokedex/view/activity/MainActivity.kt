@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.bearman.pokedex.R
 import com.bearman.pokedex.view.viewmodel.ListPokemonViewModel
 import dagger.android.support.DaggerAppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
@@ -25,6 +26,8 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private fun observer() {
-
+        viewModel.pokemonList.observe(this, {
+            tvHello.text = it?.get(800)?.name
+        })
     }
 }
