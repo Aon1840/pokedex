@@ -21,6 +21,10 @@ class MainActivity : DaggerAppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ListPokemonViewModel::class.java)
         viewModel.callService("10")
+        observer()
+    }
+
+    private fun observer() {
 
     }
 }

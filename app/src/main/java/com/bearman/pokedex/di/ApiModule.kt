@@ -1,9 +1,11 @@
 package com.bearman.pokedex.di
 
-import com.bearman.pokedex.domain.repository.PokemonRepository
-import com.bearman.pokedex.domain.usecase.ListPokemonUseCase
 import com.bearman.pokedex.data.service.PokeApi
 import com.bearman.pokedex.data.service.PokemonService
+import com.bearman.pokedex.domain.executor.PostExecutionThread
+import com.bearman.pokedex.domain.executor.ThreadExecutor
+import com.bearman.pokedex.domain.repository.PokemonRepository
+import com.bearman.pokedex.domain.usecase.ListPokemonUseCase
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -41,7 +43,15 @@ class ApiModule {
 
     @Singleton
     @Provides
-    fun provideListPokemonUseCase(repository: PokemonRepository): ListPokemonUseCase {
-        return ListPokemonUseCase(repository)
+    fun provideListPokemonUseCase(
+        threadExecutor: ThreadExecutor,
+        postExecutionThread: PostExecutionThread,
+        repository: PokemonRepository
+    ): ListPokemonUseCase {
+        return ListPokemonUseCase(
+            threadExecutor,
+            postExecutionThread,
+            repository
+        )
     }
 }

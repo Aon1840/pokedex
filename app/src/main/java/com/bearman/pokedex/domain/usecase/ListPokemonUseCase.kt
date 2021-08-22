@@ -1,22 +1,21 @@
 package com.bearman.pokedex.domain.usecase
 
-import com.bearman.pokedex.domain.repository.PokemonRepository
 import com.bearman.pokedex.data.entity.PokemonEntity
+import com.bearman.pokedex.domain.executor.PostExecutionThread
+import com.bearman.pokedex.domain.executor.ThreadExecutor
+import com.bearman.pokedex.domain.repository.PokemonRepository
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class ListPokemonUseCase @Inject constructor(
+class ListPokemonUseCase
+@Inject constructor(
+    threadExecutor: ThreadExecutor,
+    postExecutionThread: PostExecutionThread,
     private val repository: PokemonRepository
-) {
+) : BaseSingleUseCase<PokemonEntity, String>(threadExecutor, postExecutionThread) {
 
-    fun getPokemonList(
-        offset: String
-    ): Single<PokemonEntity> {
-        return repository.getPokemonList(offset)
-            .subscribeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
+    override fun buildUseCaseSingle(params: String?): Single<PokemonEntity> {
+        return repository.getPokemonList(params!!)
     }
 
 }
