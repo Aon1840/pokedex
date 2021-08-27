@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bearman.pokedex.data.entity.PokemonDetailEntity
 import com.bearman.pokedex.domain.usecase.ListPokemonDetail
-import com.bearman.pokedex.domain.usecase.ListPokemonUseCase
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -16,12 +15,19 @@ class ListPokemonViewModel
     var pokemonList = MutableLiveData<List<PokemonDetailEntity>>()
     var isLoading = MutableLiveData<Boolean>()
     var isError = MutableLiveData<Boolean>()
+    var isChangeView = MutableLiveData(false)
 
-    fun callService(offset: String) {
-        fetchPokemon(offset)
+    fun callService() {
+        fetchPokemon()
     }
 
-    private fun fetchPokemon(offset: String) {
+    fun changeView() {
+        isChangeView.value?.let {
+            isChangeView.value = !it
+        }
+    }
+
+    private fun fetchPokemon() {
         isLoading.value = true
         listPokemonDetailUseCase.execute({
             Timber.d("success: $it")
