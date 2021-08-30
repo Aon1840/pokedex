@@ -34,10 +34,10 @@ class MainActivity : DaggerAppCompatActivity() {
             layoutManager = GridLayoutManager(context, 2)
             adapter = pokemonListAdapter
         }
-
-        btChange.setOnClickListener {
-            viewModel.changeView()
-        }
+//
+//        btChange.setOnClickListener {
+//            viewModel.changeView()
+//        }
 
         observer()
     }
@@ -48,12 +48,12 @@ class MainActivity : DaggerAppCompatActivity() {
             pokemonListAdapter.updateCountries(it)
         })
 
-        viewModel.isChangeView.observe(this, {
-            if (it) {
-                rvPokemon.layoutManager = LinearLayoutManager(this)
-            } else {
-                rvPokemon.layoutManager = GridLayoutManager(this, 2)
-            }
-        })
+//        viewModel.isChangeView.observe(this, {
+//            if (it) {
+//                rvPokemon.layoutManager = LinearLayoutManager(this)
+//            } else {
+//                rvPokemon.layoutManager = GridLayoutManager(this, 2)
+//            }
+//        })
     }
 }

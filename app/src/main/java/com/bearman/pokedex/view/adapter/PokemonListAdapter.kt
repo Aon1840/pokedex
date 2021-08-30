@@ -1,8 +1,13 @@
 package com.bearman.pokedex.view.adapter
 
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bearman.pokedex.R
 import com.bearman.pokedex.data.entity.PokemonDetailEntity
@@ -33,15 +38,41 @@ class PokemonListAdapter(
         holder.bind(countries[position])
     }
 
-    class CountryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class CountryViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(pokemon: PokemonDetailEntity) {
             itemView.rootView.apply {
-                tvName.text = pokemon.name
+                relativeLayoutBackground.background.colorFilter =
+                    PorterDuffColorFilter(
+                        ContextCompat.getColor(view.context, R.color.black),
+                        PorterDuff.Mode.SRC_ATOP
+                    )
+                textViewName.text = pokemon.name
+                textViewID.text = pokemon.id
                 Glide.with(this)
                     .load(pokemon.imageUrl)
-                    .into(ivCharacter)
+                    .into(imageView)
             }
+        }
+
+        @ColorInt
+        private fun getPokemonColor(type: String?): Int {
+            val color = when (type?.toLowerCase()) {
+                "grass", "bug" -> R.color.lightTeal
+                "fire" -> R.color.lightRed
+                "water", "fighting", "normal" -> R.color.lightBlue
+                "electric", "psychic" -> R.color.lightYellow
+                "poison", "ghost" -> R.color.lightPurple
+                "ground", "rock" -> R.color.lightBrown
+                "dark" -> R.color.black
+                else -> R.color.lightBlue
+            }
+            return convertColor(color)
+        }
+
+        @ColorInt
+        fun convertColor(@ColorRes color: Int): Int {
+            return ContextCompat.getColor(view.context, color)
         }
     }
 }
