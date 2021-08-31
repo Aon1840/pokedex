@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/background_item_pokemon.xml" value="0.11770833333333333" />
         <entry key="app/src/main/res/layout/item_pokemon.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_pokemon_loading.xml" value="0.16875" />
       </map>
     </option>
   </component>
